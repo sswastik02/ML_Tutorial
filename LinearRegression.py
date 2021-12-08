@@ -15,7 +15,6 @@ dfeval = read_csv('https://storage.googleapis.com/tf-datasets/titanic/eval.csv')
 
 s_train = dftrain.pop('survived')
 s_eval = dfeval.pop('survived')
-
 # Uncomment the below block for seeing graphs and values
 
 # print(dftrain.head())
@@ -74,7 +73,8 @@ train_input_fn = make_input_fn(dftrain,s_train)
 eval_input_fn = make_input_fn(dfeval,s_eval,num_epochs=1,shuffle=False)
 # No need to send same dataset twice or shuffle during evaluating
 
-linear_est = tf.estimator.LinearClassifier(feature_columns=feature_columns)
+linear_est = tf.estimator.LinearClassifier(feature_columns=feature_columns) # Although classifier is used to seperate into groups
+# Classifying into groups of 2 (0 or 1) is the same as regression
 # Estimator is the implementation of ML Algotithms in tensorflow, so the above lines create a ML model
 
 # Now to train the model
@@ -89,8 +89,3 @@ predict = list(linear_est.predict(eval_input_fn))
 print(dfeval.loc[2])
 print(s_eval.loc[2])
 print("Survival Chance:",predict[2]["probabilities"][1]) # since death is shown by survival 0 and survived by survival 1 [1] will indicate survival
-
-
-
-
-

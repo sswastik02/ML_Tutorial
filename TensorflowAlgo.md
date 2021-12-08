@@ -30,3 +30,7 @@ Ex. If we have 10 epochs, our model will see the same dataset 10 times
 
 ### Input Function
 To pass these datasets we will need an input function to actually input the data into the model
+
+## Classification
+
+It is seperating datapoints into different categories rather than predicting a value such as chance of survival
