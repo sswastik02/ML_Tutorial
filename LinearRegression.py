@@ -51,11 +51,44 @@ for feature in categorical_columns:
 
 for feature in numerical_columns:
     vocabulary_list = dftrain[feature].unique()
-    feature_columns.append(tf.feature_column.numeric_column(feature,vocabulary_list))
+    feature_columns.append(tf.feature_column.numeric_column(feature,dtype=tf.float32))
 
 # feature_columns now contains each column in a numerical format
 
 
+#------------------------- The Training Process --------------------------------
+
+def make_input_fn(data_df,label_df,num_epochs = 10,shuffle = True,batch_size = 32):
+    def input_fn():
+        ds = tf.data.Dataset.from_tensor_slices((dict(data_df),label_df)) # label_df contains the metadata while data_df contains data
+        # above line returns a dataset we can now use
+        if shuffle:
+            ds = ds.shuffle(1000)
+        ds = ds.batch(batch_size).repeat(num_epochs)
+        return ds # returns a batch of dataset
+    return input_fn
+
+# make_input_fn makes an input function for a particular data frame and label data frame
+
+train_input_fn = make_input_fn(dftrain,s_train)
+eval_input_fn = make_input_fn(dfeval,s_eval,num_epochs=1,shuffle=False)
+# No need to send same dataset twice or shuffle during evaluating
+
+linear_est = tf.estimator.LinearClassifier(feature_columns=feature_columns)
+# Estimator is the implementation of ML Algotithms in tensorflow, so the above lines create a ML model
+
+# Now to train the model
+
+linear_est.train(train_input_fn)
+result = linear_est.evaluate(eval_input_fn) # To evaluate the model after the training
+
+print(result['accuracy']) # result variable contains more statistical data besides accuracy
+
+# To predict for a value
+predict = list(linear_est.predict(eval_input_fn))
+print(dfeval.loc[2])
+print(s_eval.loc[2])
+print("Survival Chance:",predict[2]["probabilities"][1]) # since death is shown by survival 0 and survived by survival 1 [1] will indicate survival
 
 
 

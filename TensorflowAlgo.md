@@ -15,3 +15,18 @@ It involves finding the "line of best fit" (line equally closest to all data poi
 
 So for specefic x you can predict a y using linear regression
 It is used when data-points are linearly related
+
+## Training Process
+
+### Batches
+To feed a huge amount of data to a model (like 25TB) you have to break them into smaller parts and then feed them.
+Smaller parts are known as batches (usually a size of 32 is considered)
+
+These batches are fed to the model multiple times depending on the number of epochs
+
+### Epochs 
+Number of epochs we define is the amount of times our model will see the entire dataset
+Ex. If we have 10 epochs, our model will see the same dataset 10 times
+
+### Input Function
+To pass these datasets we will need an input function to actually input the data into the model
