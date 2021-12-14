@@ -18,17 +18,17 @@ It is used when data-points are linearly related
 
 ## Training Process
 
-### Batches
+### 1. Batches
 To feed a huge amount of data to a model (like 25TB) you have to break them into smaller parts and then feed them.
 Smaller parts are known as batches (usually a size of 32 is considered)
 
 These batches are fed to the model multiple times depending on the number of epochs
 
-### Epochs 
+### 2. Epochs 
 Number of epochs we define is the amount of times our model will see the entire dataset
 Ex. If we have 10 epochs, our model will see the same dataset 10 times
 
-### Input Function
+### 3. Input Function
 To pass these datasets we will need an input function to actually input the data into the model
 
 ## Classification
@@ -68,5 +68,47 @@ Transitions : Each state has a probability of changing to a different state. For
                 the next day is 30% while if its a cloudy day there is a 40% chance next day will be a sunny day
 
 <img src = "./markov.png" alt = "States Image">
+
+## Neural Networks
+
+
+### 1. Input Layer
+
+This layer takes in raw input for the neural network, To input n peices of information, we need n input neurons
+
+### 2. Output Layer
+
+This layer gives out output from the neural network. For each output information we need 1 output neuron
+Say we were classifying, we could do it using one output or probabilities of all classes    
+
+### 3. Hidden Layer
+
+This layer is where all the computation takes place, the reason it's called hidden is because we don't know what's going on in here
+You can have multiple layers under hidden layer
+
+### 4. Weights
+
+Every Layer is connected to another layer with connections known as weights
+Weights represented as numbers. Generally these numbers are between 0 and 1, But we could have negative numbers, or large numbers.
+If all the neurons in the current layer are connected to every neuron in the previous layer`, it is said to be a densly connected layer
+
+These weights are what is changed by the neural network as it goes through datasets to give most accurate outputs
+
+Weight is a trainable parameter
+
+### 5. Biases
+
+There exists only one bias per layer and it affects the next layer
+The weights that connect the bias to the layer has a numeric value of 1
+
+Bias is a trainable parameter
+
+
+<img src="./neural.png" alt = "Neural Network">
+
+
+
+
+
 
 
