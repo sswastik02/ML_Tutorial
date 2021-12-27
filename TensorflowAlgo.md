@@ -106,9 +106,61 @@ Bias is a trainable parameter
 
 <img src="./neural.png" alt = "Neural Network">
 
+## Activation Functions
+
+Now it is highly possible that the output layer of the neural network gives a very large number given so many weights and biases
+So to optimise this value Activation Functions are used
+
+The whole point of activation function is to introduce complexity
+
+### 1. Relu (Rectified Linear Unit)
+Any Value less than 0 is made 0 and all others are as it is
+
+<img src="https://i.imgur.com/gKA4kA9.jpg">
+
+### 2. Tanh (Hyperbolic Tangent)
+
+It squishes the numbers to fit between -1 and 1
+
+<img src="https://i0.wp.com/sefiks.com/wp-content/uploads/2017/01/tanh.png?resize=456%2C300&ssl=1">
+
+### 3. Sigmoid Function
+
+It squishes values to between 0 and 1
+
+<img src="https://miro.medium.com/max/1838/1*a04iKNbchayCAJ7-0QlesA.png" width="550px">
+
+They move data points to a different plane if all data points are on a single plane
+
+Let's Say it(datapoints) forms a rectange (length and width) and after applying activation functions it becomes a cube (length, height, width, no. of faces, uniformity, etc.) this allows to find patterns that were not present before.
 
 
+## Training Neural Networks
 
+### 1. Loss function : 
+This function determines while training how far the the output value is from the actual value and tells in which direction or how the 
+neural network is supposed to change. For example it could indicate that a drastic change in weights and biases is needed or maybe a little change. We need the network loss function to output the least amount of loss
+
+Some loss functions are : 
+* Mean Squared Error
+* Mean Absolute Error
+* Hinge Loss
+
+### 2. Gradient Descent : 
+This determines in which direction to move so that the loss from the loss function can be minimised and there is an algorithm called 
+back propagation which goes layer by layer backwards from the output neuron to adjust the weights and biases to improve the prediction
+of the neural network
+
+<img src="./grad-dec.png" width="500px">
+
+### 3. Optimizer :
+It is basically the function that implements backpropagation algorithm
+
+  1. Gradient descent
+  2. Stochastic gradient descent
+  3. Mini-batch gradient descent
+  4. Momentum
+  5. Nesterov Accelerated Gradient
 
 
 
